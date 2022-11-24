@@ -24,7 +24,7 @@ public class Clase implements Serializable{
 	private String nombre;
 
 	@Column(nullable=false)
-	private int asistentes;
+	private Integer asistentes;
 
 	@ManyToOne
 	@JoinColumn(name="monitor_id")
@@ -58,11 +58,13 @@ public class Clase implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public int getAsistentes() {
+	
+	
+	public Integer getAsistentes() {
 		return asistentes;
 	}
 
-	public void setAsistentes(int asistentes) {
+	public void setAsistentes(Integer asistentes) {
 		this.asistentes = asistentes;
 	}
 

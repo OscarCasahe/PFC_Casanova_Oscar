@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<head th:replace="fragments/bootstrap::head(title='Update Clase')">
+<meta charset="UTF-8">
 </head>
 <body>
 	<div class="container">
@@ -11,8 +11,9 @@
 		<div class="row justify-content-center">
 			<div class="col-8">
 			
-				<form action="#" th:action="@{/admin/clases/editarClase}" th:object="${clase}" method="post">
+				<form action="#" th:action="@{/admin/clases/update}" th:object="${clase}" method="post">
 				
+    				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${clase.getId()}">
 
 				
 					<label for="nombre" class="form-label mt-3">Nombre</label>
@@ -23,7 +24,7 @@
 
 					<label for="monitor" class="form-label mt-3">Monitor</label>
 					
-					<select id="monitor" name="monitor" class="form-select form-select-lg mb-3"  th:field="*{monitor_id}">
+					<select id="monitor" name="monitor" class="form-select form-select-lg mb-3"  th:field="*{monitor}">
 					
 						<option th:each="m : ${monitores}" th:value="${m.getId()}" th:text="${m.nombre}"></option>
 					

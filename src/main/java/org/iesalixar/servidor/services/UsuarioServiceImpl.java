@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesalixar.servidor.model.Clase;
 import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return user;
 	}
 
+
+//	public Usuario updateCliente(Usuario clienteBD) {
+//		if (clienteBD==null || clienteBD.getNombre()==null || claseBD.getAsistentes()==null || claseBD.getMonitor()==null) {
+//			return null;			
+//		}
+//		return claseRepo.save(claseBD);
+//		
+//	}
 	
 }

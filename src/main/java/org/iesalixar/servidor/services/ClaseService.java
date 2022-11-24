@@ -3,6 +3,7 @@ package org.iesalixar.servidor.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesalixar.servidor.dto.ClaseDTO;
 import org.iesalixar.servidor.model.Clase;
 
 public interface ClaseService {
@@ -11,5 +12,6 @@ public interface ClaseService {
 	public List<Clase> getAllClases();
 	public void deleteClaseById(Long id);
 	public Optional<Clase> findClaseById(Long id);
+	public Clase updateClase(ClaseDTO clase);
 	
 }

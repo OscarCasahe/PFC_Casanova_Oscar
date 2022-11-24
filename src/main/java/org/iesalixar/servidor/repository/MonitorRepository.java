@@ -8,4 +8,6 @@ public interface MonitorRepository extends JpaRepository<Monitor,Long> {
 
 	public Monitor findByNombre(String nombre);
 
+	public Monitor findMonitorById(Long id);
+
 }

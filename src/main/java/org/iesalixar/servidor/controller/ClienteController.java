@@ -1,9 +1,14 @@
 package org.iesalixar.servidor.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.iesalixar.servidor.dto.ClaseDTO;
 import org.iesalixar.servidor.model.Clase;
+import org.iesalixar.servidor.model.Monitor;
 import org.iesalixar.servidor.model.Usuario;
+import org.iesalixar.servidor.repository.MonitorRepository;
 import org.iesalixar.servidor.services.ClaseServiceImpl;
 import org.iesalixar.servidor.services.MonitorServiceImpl;
 import org.iesalixar.servidor.services.PlanServiceImpl;
@@ -13,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -61,6 +68,37 @@ public class ClienteController {
 	}
 	
 	
+//	@GetMapping("/admin/clientes/update")
+//	public String editarClientes(@RequestParam(required = false, name = "clas") String clas, Model model) {
+//
+//
+//		if (clas == null ) {
+//			return "redirect:/admin/clases/delete";
+//		}
+//		
+//		
+//		Optional<Clase> clase = claseService.findClaseById(Long.parseLong(clas));
+//		model.addAttribute("alumno",clase.get());		
+//		
+//		
+//		
+//		return "updateClase";
+//	}
+//	
+//	
+//	
+//	@PostMapping("/admin/clientes/update")
+//	public String editarClientesPost( @ModelAttribute UsuarioDTO clase, Model model){
+//
+//		Usuario claseBD = new Usuario();
+//
+//		
+//		
+//		usuarioService.updateUsuario(claseBD);
+//
+//		return "redirect:/admin/clases/;";
+//	}
+	
 	@RequestMapping("/admin/clientes/delete")
 	public String clientesDelete(@RequestParam(required = false, name = "cliente") String cliente, Model model) {
 
@@ -90,7 +128,44 @@ public class ClienteController {
 	}
 	
 	
+	
+	@GetMapping("/admin/clases/update")
+	public String editarClase(@RequestParam(required = false, name = "clas") String clas, Model model) {
 
+
+		if (clas == null ) {
+			return "redirect:/admin/clases/";
+		}
+		
+		
+		Optional<Clase> clase = claseService.findClaseById(Long.parseLong(clas));
+		List<Monitor> monitores =  monitorService.getAllMonitores();
+		
+		model.addAttribute("clase",clase.get());		
+		model.addAttribute("monitores",monitores);		
+		
+		
+		
+		return "updateClase";
+	}
+	
+	
+	
+	@PostMapping("/admin/clases/update")
+	public String editarClasePost( @ModelAttribute ClaseDTO clase, Model model){
+
+		claseService.updateClase(clase);
+
+		return "redirect:/admin/clases/";
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	
 //	@GetMapping("/contrataPlan")
 //	public String contrataPlan(Model model) {

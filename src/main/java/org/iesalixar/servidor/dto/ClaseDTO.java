@@ -4,50 +4,63 @@ import java.util.Objects;
 
 public class ClaseDTO {
 
+	private Long id;
 	private String nombre;
-	private int asistentes;
-	private Long id_monitor;
+	private Integer asistentes;
+	private Long monitor;
 	
 	public ClaseDTO() {
 		super();
 	}
 	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getAsistentes() {
+
+	public Integer getAsistentes() {
 		return asistentes;
 	}
-	public void setAsistentes(int asistentes) {
+
+	public void setAsistentes(Integer asistentes) {
 		this.asistentes = asistentes;
 	}
-	public Long getId_monitor() {
-		return id_monitor;
-	}
-	public void setId_monitor(Long id_monitor) {
-		this.id_monitor = id_monitor;
+
+
+	public Long getMonitor() {
+		return monitor;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(asistentes, id_monitor, nombre);
+	public void setMonitor(Long monitor) {
+		this.monitor = monitor;
 	}
 
+
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ClaseDTO other = (ClaseDTO) obj;
-		return asistentes == other.asistentes && Objects.equals(id_monitor, other.id_monitor)
-				&& Objects.equals(nombre, other.nombre);
+	public String toString() {
+		return "ClaseDTO [nombre=" + nombre + ", asistentes=" + asistentes + ", monitor=" + monitor + "]";
 	}
+
+
+	
+	
 	
 	
 

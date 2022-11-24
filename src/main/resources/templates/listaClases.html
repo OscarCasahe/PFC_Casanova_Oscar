@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='List Clases')"></head>
+<head th:replace="fragments/bootstrap::head(title='List Clases')">
+<meta charset="UTF-8">
+</head>
 <body>
 	<div class="container mt-5">
 		<div class="row mt-5 justify-content-center">
@@ -16,6 +18,7 @@
 							<th>Asistentes </th>
 							<th>Monitor</th>
 							<th></th>
+							<th></th>
 						</tr>
 						</thead>					
 						<tbody>
@@ -24,6 +27,8 @@
 						 	<td th:text="${c.getAsistentes()}"></td>
 						 	<td th:text="${c.getMonitor().getNombre()}"></td>
 						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clases/delete(clase=${c.getId()})}"><i class="bi bi-trash-fill"></i></a></td>
+						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clases/update(clas=${c.getId()})}"><i class="bi bi-pencil-fill"></i></a></td>
+						    
 						 </tr>					
 						</tbody>
 					</table>
