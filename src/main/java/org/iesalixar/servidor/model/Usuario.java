@@ -10,10 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.springframework.core.annotation.Order;
 
 
 @Entity
@@ -21,7 +22,8 @@ import org.springframework.core.annotation.Order;
 public class Usuario implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="seq", initialValue=10, allocationSize=100)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private Long id;
 	
 	@Column(name="usuario",unique=true, nullable=false)
@@ -48,9 +50,13 @@ public class Usuario implements Serializable {
 	@Column(nullable=false,columnDefinition="BOOLEAN")	
 	private boolean activo;
 	
-	/*	@ManyToOne
+	@ManyToOne
 	@JoinColumn(name="plan")
-	Plan plan;*/
+	Plan plan;
+	
+	@OneToMany(mappedBy="usuario",cascade=CascadeType.ALL, orphanRemoval=true)
+	private Set<Reserva> reservas = new HashSet<>();
+
 	
 	
 	public Usuario() {
@@ -127,6 +133,29 @@ public class Usuario implements Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public Set<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(Set<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email
+				+ ", nombre=" + nombre + ", apellidos=" + apellidos + ", role=" + role + ", cp=" + cp + ", activo="
+				+ activo + ", plan=" + plan + ", reservas=" + reservas + "]";
 	}
 	
 

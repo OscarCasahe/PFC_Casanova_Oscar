@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+				<header th:insert="fragments/parts::menu"></header>
+	
+		<div class="row justify-content-center">
+			<div class="col-8">
+			
+				<form action="#" th:action="@{/admin/clientes/editarCliente}" th:object="${cliente}" method="post">
+				
+
+				
+					<label for="usuario" class="form-label mt-3">Usuario</label>
+    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{usuario}" value="${cliente.getAsistentes()}" required >
+
+					<label for="usuario" class="form-label mt-3">Nombre</label>
+    				<input type="text" class="form-control" id="nombre" name="usuario" th:field="*{usuario}" value="${cliente.getAsistentes()}" required >
+
+					<label for="usuario" class="form-label mt-3">Usuario</label>
+    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{usuario}" value="${cliente.getAsistentes()}" required >
+
+					<label for="usuario" class="form-label mt-3">Usuario</label>
+    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{usuario}" value="${cliente.getAsistentes()}" required >
+
+
+    				
+    				<input type="submit" class="btn btn-primary w-100 mt-3" value="CAMBIAR NOTA" />
+    					
+				</form>
+			</div>		
+		</div>
+	</div>
+</body>
+</html>

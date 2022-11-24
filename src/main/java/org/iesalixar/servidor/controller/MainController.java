@@ -49,6 +49,7 @@ public class MainController {
 		userBD.setUserName(usuario.getUsuario());
 		userBD.setRole("ROLE_USER");
 		userBD.setEmail(usuario.getEmail());		
+		userBD.setCp(usuario.getCp());		
 		userBD.setPassword(new BCryptPasswordEncoder(15).encode(usuario.getPassword()));
 		
 		userBD = usuarioService.insertUsuario(userBD);

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+				<header th:insert="fragments/parts::menu"></header>
+	
+		<div class="row justify-content-center">
+			<div class="col-8">
+			
+				<form action="#" th:action="@{/admin/clases/editarClase}" th:object="${clase}" method="post">
+				
+
+				
+					<label for="nombre" class="form-label mt-3">Nombre</label>
+    				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" value="${clase.getNombre()}" required >
+
+					<label for="asistentes" class="form-label mt-3">Asistentes</label>
+    				<input type="text" class="form-control" id="asistentes" name="asistentes" th:field="*{asistentes}" value="${clase.getAsistentes()}" required >
+
+					<label for="monitor" class="form-label mt-3">Monitor</label>
+					
+					<select id="monitor" name="monitor" class="form-select form-select-lg mb-3"  th:field="*{monitor_id}">
+					
+						<option th:each="m : ${monitores}" th:value="${m.getId()}" th:text="${m.nombre}"></option>
+					
+					</select>
+
+    				
+    				<input type="submit" class="btn btn-primary w-100 mt-3" value="EDITAR CLASE" />
+    					
+				</form>
+			</div>		
+		</div>
+	</div>
+</body>
+</html>

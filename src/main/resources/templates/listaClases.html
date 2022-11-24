@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='List Clases')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-10 mt-5 mb-5">
+			
+				
+			<h3 class="mb-4">Lista de Clases:</h3>
+				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
+						<thead class="table-light">
+						<tr>
+							<th>Nombre</th>
+							<th>Asistentes </th>
+							<th>Monitor</th>
+							<th></th>
+						</tr>
+						</thead>					
+						<tbody>
+						 <tr th:each="c : ${clases}">
+						 	<td th:text="${c.getNombre()}"></td>
+						 	<td th:text="${c.getAsistentes()}"></td>
+						 	<td th:text="${c.getMonitor().getNombre()}"></td>
+						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clases/delete(clase=${c.getId()})}"><i class="bi bi-trash-fill"></i></a></td>
+						 </tr>					
+						</tbody>
+					</table>
+			</div>		
+		</div>
+	</div>
+</body>
+</html> 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='List Clientes')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-10 mt-5 mb-5">
+			
+				
+			<h3>Lista de Clientes:</h3>
+				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
+						<thead class="table-light">
+				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
+						<thead class="table-light">
+						<tr>
+							<th>Nombre</th>
+							<th>Apellidos </th>
+							<th>CP</th>
+							<th>Plan</th>
+							<th></th>
+						</tr>
+						</thead>					
+						<tbody>
+						 <tr th:each="c : ${clientes}">
+						 	<td th:text="${c.getNombre()}"></td>
+						 	<td th:text="${c.getApellidos()}"></td>
+						 	<td th:text="${c.getPlan()}"></td>
+						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clientes/delete(cliente=${c.getId()})}"><i class="bi bi-trash-fill"></i></a></td>
+						 </tr>					
+						</tbody>
+					</table>
+			</div>		
+		</div>
+	</div>
+</body>
+</html> 
