@@ -7,7 +7,7 @@
 	<div class="container mt-5">
 		<div class="row mt-5 justify-content-center">
 			<header th:insert="fragments/parts::menu"></header>
-			<div sec:authorize="!isAuthenticated()" class="col-10 mt-5 mb-5">
+			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
 
 				<form action="#" th:action="@{/contrataPlan}" th:object="${cliente}" method="post">
 								<div class="d-flex justify-content-around">
@@ -26,7 +26,7 @@
 						</ul>
 						<div class="card-body">
 						
-						    <input type="hidden" class="form-control" id="plan1" name="plan">
+						    <input type="hidden" class="form-control" id="plan1" name="plan" value="1">
 							<input type="submit" class="btn btn-primary w-100 mt-3"
 								value="Contrata Ya!" />
 						</div>
@@ -51,7 +51,7 @@
 
 						</ul>
 						<div class="card-body">
-							<input type="hidden" class="form-control" id="plan2" name="plan">
+						    <input type="hidden" class="form-control" id="plan2" name="plan" value="2">
 							<input type="submit" class="btn btn-primary w-100 mt-3"
 								value="Contrata Ya!" />
 						</div>
@@ -77,7 +77,7 @@
 
 						</ul>
 						<div class="card-body">
-							<input type="hidden" class="form-control" id="plan1" name="plan">
+						    <input type="hidden" class="form-control" id="plan3" name="plan" value="3">
 							<input type="submit" class="btn btn-primary w-100 mt-3"
 								value="Contrata Ya!" />
 						</div>
@@ -91,7 +91,7 @@
 
 
 
-			</div>
+		</div>
 
 
 

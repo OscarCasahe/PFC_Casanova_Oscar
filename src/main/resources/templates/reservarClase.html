@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Reservar Clase')">
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
+
+				<form action="#" th:action="@{/reservarClase}"
+					th:object="${reserva}" method="post">
+
+
+<!-- 	COMO OBTENER EL ID DEL USUARIO?				<input type="hidden" class="form-control" id="usuario" name="usuario" th:field="*{usuario}" value="${clase.getId()}">
+
+
+		Pedir el nombre por texto y hacer una búsqueda de usuario con find by para encontrar el id?
+
+ -->
+ 
+<!--  	busqueda por nombre y apellidos(?)--> <!-- Cómo puedo acceder al id del usuario logeado? -->
+
+					  <label for=usuario class="form-label mt-3">¿A qué nombre apuntamos la reserva? (nombre y apellidos, por favor)</label>
+					  
+					   <input type="text" class="form-control" id="usuario" name="usuario" th:field="*{usuario}">
+ 
+
+					<label for="clase" class="form-label mt-3">¿Qué clase quieres reservar?</label> 
+					
+					<select id="clase" name="clase" class="form-select form-select-lg mb-3" th:field="*{clase}">
+
+						<option th:each="c : ${clases}" th:value="${c.getId()}" th:text="${c.nombre}"></option>
+
+					</select> 
+					
+					 <label for="fecha" class="form-label mt-3">¿Qué día quieres reservar?</label>
+					 
+					  <input type="date" class="form-control" id="fecha" name="fecha" th:field="*{fecha}"> 
+					  
+					  <label for="hora" class="form-label mt-3">¿A qué hora quieres reservar? (18:00 ejemplo)</label>
+					  
+					   <input type="text" class="form-control" id="hora" name="hora" th:field="*{hora}">
+
+
+
+				</form>
+
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

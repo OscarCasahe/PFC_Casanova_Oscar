@@ -21,14 +21,17 @@
 							<th>CP</th>
 							<th>Plan</th>
 							<th></th>
+							<th></th>
 						</tr>
 						</thead>					
 						<tbody>
 						 <tr th:each="c : ${clientes}">
 						 	<td th:text="${c.getNombre()}"></td>
 						 	<td th:text="${c.getApellidos()}"></td>
-						 	<td th:text="${c.getPlan()}"></td>
+						 	<td th:text="${c.getCp()}"></td>
+						 	<td th:text="${c.getPlan().getNombre()}"></td>
 						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clientes/delete(cliente=${c.getId()})}"><i class="bi bi-trash-fill"></i></a></td>
+						    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clientes/update(cliente=${c.getId()})}"><i class="bi bi-pencil-fill"></i></a></td>
 						 </tr>					
 						</tbody>
 					</table>

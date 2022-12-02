@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PlanRepository extends JpaRepository<Plan,Long> {
 
 	public Plan findBynombre(String nombre);
+	
+	public Plan findPlanById(Long id);
 }

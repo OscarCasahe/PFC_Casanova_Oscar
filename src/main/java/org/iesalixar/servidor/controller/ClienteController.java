@@ -1,14 +1,15 @@
 package org.iesalixar.servidor.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.iesalixar.servidor.dto.ClaseDTO;
+import org.iesalixar.servidor.dto.UsuarioDTO;
 import org.iesalixar.servidor.model.Clase;
 import org.iesalixar.servidor.model.Monitor;
+import org.iesalixar.servidor.model.Plan;
+import org.iesalixar.servidor.model.Reserva;
 import org.iesalixar.servidor.model.Usuario;
-import org.iesalixar.servidor.repository.MonitorRepository;
 import org.iesalixar.servidor.services.ClaseServiceImpl;
 import org.iesalixar.servidor.services.MonitorServiceImpl;
 import org.iesalixar.servidor.services.PlanServiceImpl;
@@ -44,19 +45,10 @@ public class ClienteController {
 	ClaseServiceImpl claseService;
 
 	
-
 	
+// ZONA ADMIN
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-// ADMIN
+	//Clientes
 	
 	@GetMapping("/admin/clientes")
 	public String usuarios(Model model) {
@@ -68,36 +60,35 @@ public class ClienteController {
 	}
 	
 	
-//	@GetMapping("/admin/clientes/update")
-//	public String editarClientes(@RequestParam(required = false, name = "clas") String clas, Model model) {
-//
-//
-//		if (clas == null ) {
-//			return "redirect:/admin/clases/delete";
-//		}
-//		
-//		
-//		Optional<Clase> clase = claseService.findClaseById(Long.parseLong(clas));
-//		model.addAttribute("alumno",clase.get());		
-//		
-//		
-//		
-//		return "updateClase";
-//	}
-//	
-//	
-//	
-//	@PostMapping("/admin/clientes/update")
-//	public String editarClientesPost( @ModelAttribute UsuarioDTO clase, Model model){
-//
-//		Usuario claseBD = new Usuario();
-//
-//		
-//		
-//		usuarioService.updateUsuario(claseBD);
-//
-//		return "redirect:/admin/clases/;";
-//	}
+	@GetMapping("/admin/clientes/update")
+	public String editarCliente(@RequestParam(required = false, name = "cliente") String user, Model model) {
+
+
+		if (user == null ) {
+			return "redirect:/admin/clientes/";
+		}
+		
+		
+		Optional<Usuario> usuario = usuarioService.findUsuarioById(Long.parseLong(user));
+		List<Plan> planes =  planService.getAllPlans();
+		
+		model.addAttribute("usuario",usuario.get());		
+		model.addAttribute("planes",planes);		
+		
+		
+		
+		return "updateCliente";
+	}
+	
+	
+	
+	@PostMapping("/admin/clientes/update")
+	public String editarClientePost( @ModelAttribute UsuarioDTO usuario, Model model){
+
+		usuarioService.updateUsuario(usuario);
+
+		return "redirect:/admin/clases/";
+	}
 	
 	@RequestMapping("/admin/clientes/delete")
 	public String clientesDelete(@RequestParam(required = false, name = "cliente") String cliente, Model model) {
@@ -106,6 +97,13 @@ public class ClienteController {
 
 		return "redirect:/admin/clientes/	";
 	}
+	
+	
+	
+	
+	
+	//Clases
+	
 	
 	@GetMapping("/admin/clases")
 	public String clases(Model model) {
@@ -163,147 +161,50 @@ public class ClienteController {
 	
 	
 	
+	//ZONA USUARIO
 	
 	
 	
-	
-//	@GetMapping("/contrataPlan")
-//	public String contrataPlan(Model model) {
-//
-//	Usuario usuarios = usuarioService.findByUserName();
-//
-//		model.addAttribute("clientes", usuarios);
-//		return "listaClientes";
-//	}
+	@GetMapping("/contrataPlan")
+	public String contrataPlan(@RequestParam(required = false, name = "cliente") String cliente, Model model) {
 
-//	
-//	
-//	@RequestMapping("/matriculas/add")
-//	public String addMatriculaGet(@RequestParam(required = false, name = "error") String error,@RequestParam(required = false, name = "codigo") String codigo, Model model) {
-//		
-//	
-//		AlumnoAsignaturaNotaDTO matricula = new AlumnoAsignaturaNotaDTO();
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(Long.parseLong(codigo));
-//		List<Alumno> alumnos = alumnoService.getAllAlumnos();
-//
-//		
-//		model.addAttribute("matricula", matricula);
-//		model.addAttribute("alumnos", alumnos);
-//		model.addAttribute("asignatura", asignatura);
-//		model.addAttribute("error", error);
-//		return "addMatricula";
-//	}
-//	
-//	@PostMapping("/matriculas/add")
-//	public String addMatriculaPost( @ModelAttribute AlumnoAsignaturaNotaDTO alumAsig, Model model) throws ParseException {
-//
-//		AlumnoAsignatura alumnoAsignaturaBD = new AlumnoAsignatura();
-//		Optional<Alumno> alumno = alumnoService.findAlumnoById(alumAsig.getId_alumno());
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(alumAsig.getId_asignatura());
-//
-//		
-//		alumnoAsignaturaBD.setAlumno(alumno.get());
-//		alumnoAsignaturaBD.setAsignatura(asignatura.get());
-//		alumnoAsignaturaBD.setNota(alumAsig.getNota());
-//		
-//		alumnoAsignaturaService.actualizarAlumnoAsignaturas(alumnoAsignaturaBD);
-//
-//		return "redirect:/";
-//	}
-//	
-//
-//
-//	
-//	@GetMapping("/matriculas/list")
-//	public String asignaturasGrado(@RequestParam(required = false, name = "codigo") String codigo, Model model) {
-//
-//
-//		if (codigo == null) {
-//			return "redirect:/";
-//		}
-//		
-//		
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(Long.parseLong(codigo));
-//		model.addAttribute("asignatura",asignatura.get());		
-//		model.addAttribute("matriculados",asignatura.get().getAlumnosAsignatura());		
-//		return "listMatricula";
-//	}
-//	
-//	
-//	@RequestMapping("/matriculas/delete")
-//	public String gradosDelete(@RequestParam(required = false, name = "error") String error, @RequestParam(required = false, name = "alum") String alum,@RequestParam(required = false, name = "asig") String asig, Model model) {
-//		
-//		Optional<Alumno> alumno = alumnoService.findAlumnoById(Long.parseLong(alum));
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(Long.parseLong(asig));
-//
-//		asignatura.get().removeNota(alumno.get());
-//		
-//		model.addAttribute("error", error);
-//
-//
-//		return "redirect:/";
-//	}
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//
-//	@GetMapping("/grados/estudiantes/editarnota")
-//	public String editarNota(@RequestParam(required = false, name = "alum") String alum, @RequestParam(required = false, name = "asig") String asig, Model model) {
-//
-//
-//		if (alum == null || asig == null) {
-//			return "redirect:/grados/estudiantes/";
-//		}
-//		
-//		
-//		Optional<Alumno> alumno = alumnoService.findAlumnoById(Long.parseLong(alum));
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(Long.parseLong(asig));
-//		model.addAttribute("alumno",alumno.get());		
-//		model.addAttribute("asignatura",asignatura.get());
-//		
-//		
-//		
-//		
-//		
-//		//Recorrer el bucle para encontrar la nota de la asignatura en concreto
-//		
-//		
-//			for (AlumnoAsignatura nota : alumno.get().getAlumnoAsignaturas()) { 
-//				if(nota.getAsignatura().getId() == asignatura.get().getId()) {
-//					
-//					model.addAttribute("alumnoAsignatura", nota);		
-//
-//					
-//				}
-//			}
-//		
-//		
-//		return "editarnota";
-//	}
-//	
-//	
-//	
-//	@PostMapping("/grados/estudiantes/editarnota")
-//	public String editarnotaPost( @ModelAttribute AlumnoAsignaturaNotaDTO alumAsig, Model model) throws ParseException {
-//
-//		AlumnoAsignatura alumnoAsignaturaBD = new AlumnoAsignatura();
-//		Optional<Alumno> alumno = alumnoService.findAlumnoById(alumAsig.getAlumno());
-//		Optional<Asignatura> asignatura = asignaturaService.findAsignaturaById(alumAsig.getAsignatura());
-//
-//		
-//		alumnoAsignaturaBD.setAlumno(alumno.get());
-//		alumnoAsignaturaBD.setAsignatura(asignatura.get());
-//		alumnoAsignaturaBD.setNota(alumAsig.getNota());
-//		
-//		alumnoAsignaturaService.actualizarAlumnoAsignaturas(alumnoAsignaturaBD);
-//
-//		return "redirect:/grados/estudiantes?codigo="+asignatura.get().getGrado().getId();
-//	}
-//
-//	
+
+		return "contrataPlan";
+	}
+
+	//Falta el Post de ContrataPlan
 	
+//	@PostMapping("/admin/clases/update")
+//	public String editarClasePost( @ModelAttribute ClaseDTO clase, Model model){
+//
+//		claseService.updateClase(clase);
+//
+//		return "redirect:/admin/clases/";
+//	}
+	
+	//buscar en la bbdd el plan que te llega del formulario por Id, recuperar el usuario de la sesion, 
+	//buscar al usuario en la bbdd y añadir a usuario el plan  (update)
+	
+	
+	@GetMapping("/infoPage")
+	public String infoPage(Model model) {
+
+
+		return "infoPage";
+	}
+	
+	@GetMapping("/reservarClase")
+	public String reserva(@RequestParam(required = false, name = "reserva") String reserva, Model model) {
+
+		Reserva res = new Reserva();
+		List<Clase> clases = claseService.getAllClases();
+
+		model.addAttribute("clases", clases);
+		
+		return "reservarClase";
+	}
+	
+	//Falta el Post de ContrataPlan
+
+	//
 }

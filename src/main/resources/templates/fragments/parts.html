@@ -20,16 +20,16 @@
 					class="nav-link text-white" th:href="@{/register}"
 					th:text="#{menu.register}"></a></li>
 					
-				<li sec:authorize="isAuthenticated()" class="nav-item"><a
+				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
 					class="nav-link text-white " th:href="@{/contrataPlan}"
 					th:text="#{menu.plan}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/cliente/calendario}"
-					th:text="#{menu.calendario}"></a></li>
+					class="nav-link text-white" th:href="@{/reservarClase}"
+					th:text="#{menu.reserva}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/cliente/info}"
+					class="nav-link text-white" th:href="@{/infoPage}"
 					th:text="#{menu.saber}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a

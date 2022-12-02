@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.iesalixar.servidor.model.Clase;
+import org.iesalixar.servidor.dto.UsuarioDTO;
+import org.iesalixar.servidor.model.Plan;
 import org.iesalixar.servidor.model.Usuario;
+import org.iesalixar.servidor.repository.PlanRepository;
 import org.iesalixar.servidor.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
 	UsuarioRepository userRepo;
-	
+
+	@Autowired
+	PlanRepository planRepo;
+
 	@Override
 	public Usuario insertUsuario(Usuario usuario) {
 		
@@ -61,12 +66,27 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 
-//	public Usuario updateCliente(Usuario clienteBD) {
-//		if (clienteBD==null || clienteBD.getNombre()==null || claseBD.getAsistentes()==null || claseBD.getMonitor()==null) {
-//			return null;			
-//		}
-//		return claseRepo.save(claseBD);
-//		
-//	}
+	public Usuario updateUsuario(UsuarioDTO usuario) {
+		if (usuario==null || usuario.getNombre()==null || usuario.getApellidos()==null || usuario.getPassword()==null || usuario.getCp()>3 || usuario.getCp() < 0 || usuario.getPlan()==null) {
+			return null;			
+		}
+		
+		Usuario userBD = new Usuario();
+		Plan plan = planRepo.findPlanById(usuario.getPlan());
+		
+		userBD.setId(usuario.getId());
+		userBD.setUserName(usuario.getUsuario());
+		userBD.setNombre(usuario.getNombre());
+		userBD.setApellidos(usuario.getApellidos());
+		userBD.setEmail(usuario.getEmail());
+		userBD.setPassword(usuario.getPassword());
+		userBD.setCp(usuario.getCp());
+		userBD.setPlan(plan);
+		
+		
+		return userRepo.save(userBD);		
+	}
+
+
 	
 }

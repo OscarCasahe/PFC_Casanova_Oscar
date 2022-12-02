@@ -157,6 +157,8 @@ public class Usuario implements Serializable {
 				+ ", nombre=" + nombre + ", apellidos=" + apellidos + ", role=" + role + ", cp=" + cp + ", activo="
 				+ activo + ", plan=" + plan + ", reservas=" + reservas + "]";
 	}
+
+
 	
 
 	
