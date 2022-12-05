@@ -187,18 +187,33 @@ public class ClienteController {
 		return "contrataPlan";
 	}
 
-	//Falta el Post de ContrataPlan
 	
-//	@PostMapping("/admin/clases/update")
-//	public String editarClasePost( @ModelAttribute ClaseDTO clase, Model model){
-//
-//		claseService.updateClase(clase);
-//
-//		return "redirect:/admin/clases/";
-//	}
-	
-	//buscar en la bbdd el plan que te llega del formulario por Id, recuperar el usuario de la sesion, 
-	//buscar al usuario en la bbdd y añadir a usuario el plan  (update)
+	@PostMapping("/contrataPlan")
+	public String contrataPlanPost( @ModelAttribute UsuarioDTO user, Model model){
+		
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
+		JPAUserDetails userDetail = (JPAUserDetails) auth.getPrincipal();
+		Optional<Usuario> usuario = usuarioService.findUsuarioByUserName(userDetail.getUsername());
+
+		Optional<Plan> plan = planService.findPlanById(user.getPlan());
+		
+		
+		UsuarioDTO userBD = new UsuarioDTO();
+		
+		userBD.setId(usuario.get().getId());
+		userBD.setUserName(usuario.get().getUserName());
+		userBD.setNombre(usuario.get().getNombre());
+		userBD.setApellidos(usuario.get().getApellidos());
+		userBD.setEmail(usuario.get().getEmail());
+		userBD.setPassword(usuario.get().getPassword());
+		userBD.setCp(usuario.get().getCp());
+		userBD.setPlan(plan.get().getId());		
+		
+		usuarioService.updateUsuario(userBD);
+
+		return "redirect:/";
+	} 
+
 	
 	
 	@GetMapping("/infoPage")
@@ -210,22 +225,14 @@ public class ClienteController {
 	
 	
 	
-	//NO CONSIGUE UN ID, VALOR NULL
 	@GetMapping("/reservarClase")
-	public String reserva(@RequestParam(required = false, name = "reserva") String reserva, Model model) {
-
-		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
-		JPAUserDetails userDetail = (JPAUserDetails) auth.getPrincipal();
-		Optional<Usuario> usuario = usuarioService.findUsuarioByUserName(userDetail.getUsername());
-
-		
+	public String reserva(Model model) {
 		
 		Reserva res = new Reserva();
 		List<Clase> clases = claseService.getAllClases();
 
 		model.addAttribute("clases", clases);
 		model.addAttribute("reserva", res);
-		model.addAttribute("usuario", usuario.get());
 		
 		return "reservarClase";
 	}
@@ -237,12 +244,16 @@ public class ClienteController {
 			return "redirect:/index";
 		}
 		
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
+		JPAUserDetails userDetail = (JPAUserDetails) auth.getPrincipal();
+		Optional<Usuario> usuario = usuarioService.findUsuarioByUserName(userDetail.getUsername());
+
+		
 		Reserva reservaBD = new Reserva();
-		Optional<Clase> clase = claseService.findClaseById(reserva.getId_clase());
-		Optional<Usuario> cliente = usuarioService.findUsuarioById(reserva.getId_usuario());
+		Optional<Clase> clase = claseService.findClaseById(reserva.getClase());
 		
 		reservaBD.setClase(clase.get());
-		reservaBD.setUsuario(cliente.get());
+		reservaBD.setUsuario(usuario.get());
 		reservaBD.setFecha(reserva.getFecha());
 		reservaBD.setHora(reserva.getHora());
 		
@@ -250,7 +261,7 @@ public class ClienteController {
 		
 
 		
-		return "redirect:/index";
+		return "redirect:/";
 		
 	}
 }

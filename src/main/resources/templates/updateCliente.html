@@ -14,12 +14,12 @@
 			
 				<form action="#" th:action="@{/admin/clientes/update}" th:object="${usuario}" method="post">
 				
-    				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${id}" disabled >
+    				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${id}" readonly="true"  >
     				<input type="hidden" class="form-control" id="password" name="password" th:field="*{password}" value="${usuario.getPassword()}" required >
 
 				
 					<label for="usuario" class="form-label mt-3">Usuario</label>
-    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{userName}" value="${usuario.getUserName()}" disabled >
+    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{userName}" value="${usuario.getUserName()}" readonly="true" >
 
 					<label for="nombre" class="form-label mt-3">Nombre</label>
     				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" value="${usuario.getNombre()}" required >

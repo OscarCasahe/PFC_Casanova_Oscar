@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class ReservaDTO {
 
-	private Long id_usuario;
-	private Long id_clase;
+	private Long usuario;
+	private Long clase;
 	private Date fecha;
 	private String hora;
 	
@@ -14,18 +14,26 @@ public class ReservaDTO {
 		super();
 	}
 	
-	public Long getId_usuario() {
-		return id_usuario;
+
+	public Long getUsuario() {
+		return usuario;
 	}
-	public void setId_usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
+
+
+	public void setUsuario(Long usuario) {
+		this.usuario = usuario;
 	}
-	public Long getId_clase() {
-		return id_clase;
+
+
+	public Long getClase() {
+		return clase;
 	}
-	public void setId_clase(Long id_clase) {
-		this.id_clase = id_clase;
+
+
+	public void setClase(Long clase) {
+		this.clase = clase;
 	}
+
 
 	public Date getFecha() {
 		return fecha;
@@ -43,10 +51,14 @@ public class ReservaDTO {
 		this.hora = hora;
 	}
 
+	
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fecha, hora, id_clase, id_usuario);
+		return Objects.hash(clase, fecha, hora, usuario);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,11 +69,17 @@ public class ReservaDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		ReservaDTO other = (ReservaDTO) obj;
-		return Objects.equals(fecha, other.fecha) && Objects.equals(hora, other.hora)
-				&& Objects.equals(id_clase, other.id_clase) && Objects.equals(id_usuario, other.id_usuario);
+		return Objects.equals(clase, other.clase) && Objects.equals(fecha, other.fecha)
+				&& Objects.equals(hora, other.hora) && Objects.equals(usuario, other.usuario);
 	}
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "ReservaDTO [usuario=" + usuario + ", clase=" + clase + ", fecha=" + fecha + ", hora=" + hora + "]";
+	}
+
+
 
 	
 	

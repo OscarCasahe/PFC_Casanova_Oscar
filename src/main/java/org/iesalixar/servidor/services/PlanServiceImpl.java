@@ -2,6 +2,7 @@ package org.iesalixar.servidor.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.iesalixar.servidor.model.Plan;
 import org.iesalixar.servidor.model.Usuario;
@@ -49,5 +50,12 @@ public class PlanServiceImpl implements PlanService{
 
 	}
 
-	
+
+	public Optional<Plan> findPlanById(Long id) {
+		Optional<Plan> plan = planRepo.findById(id);
+
+		return plan;
+	}
+
+
 }
