@@ -5,7 +5,7 @@ import org.iesalixar.servidor.model.Plan;
 public class UsuarioDTO {
 	
 	private Long id;
-	private String usuario;
+	private String userName;
 	private String nombre;
 	private String apellidos;
 	private String email;
@@ -34,13 +34,20 @@ public class UsuarioDTO {
 
 
 
-	public String getUsuario() {
-		return usuario;
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -101,9 +108,13 @@ public class UsuarioDTO {
 
 	@Override
 	public String toString() {
-		return "UsuarioDTO [id=" + id + ", usuario=" + usuario + ", nombre=" + nombre + ", apellidos=" + apellidos
+		return "UsuarioDTO [id=" + id + ", userName=" + userName + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", email=" + email + ", password=" + password + ", cp=" + cp + ", plan=" + plan + "]";
 	}
+
+
+
+
 
 	
 	

@@ -46,7 +46,7 @@ public class MainController {
 		userBD.setActivo(true);
 		userBD.setNombre(usuario.getNombre());
 		userBD.setApellidos(usuario.getApellidos());
-		userBD.setUserName(usuario.getUsuario());
+		userBD.setUserName(usuario.getUserName());
 		userBD.setRole("ROLE_USER");
 		userBD.setEmail(usuario.getEmail());		
 		userBD.setCp(usuario.getCp());		

@@ -13,31 +13,26 @@
 					th:object="${reserva}" method="post">
 
 
-			<input type="hidden" class="form-control" id="${usuario}" name="usuario" th:field="*{usuario}">
+			<input type="hidden" class="form-control" id="${usuario.getId()}" name="usuario" th:field="*{usuario}">
 
 
- 
+  
 
-<!-- 					  <label for=usuario class="form-label mt-3">¿A qué nombre apuntamos la reserva? (nombre y apellidos, por favor)</label> -->
-					  
-<!-- 					   <input type="text" class="form-control" id="usuario" name="usuario" th:field="*{usuario}"> -->
- 
-
-<!-- 					<label for="clase" class="form-label mt-3">¿Qué clase quieres reservar?</label>  -->
+					<label for="clase" class="form-label mt-3">¿Qué clase quieres reservar?</label> 
 					
-<!-- 					<select id="clase" name="clase" class="form-select form-select-lg mb-3" th:field="*{clase}"> -->
+					<select id="clase" name="clase" class="form-select form-select-lg mb-3" th:field="*{clase}">
 
-<!-- 						<option th:each="c : ${clases}" th:value="${c.getId()}" th:text="${c.nombre}"></option> -->
+						<option th:each="c : ${clases}" th:value="${c.getId()}" th:text="${c.nombre}"></option>
 
-<!-- 					</select>  -->
+					</select> 
 					
-<!-- 					 <label for="fecha" class="form-label mt-3">¿Qué día quieres reservar?</label> -->
+					 <label for="fecha" class="form-label mt-3">¿Qué día quieres reservar?</label>
 					 
-<!-- 					  <input type="date" class="form-control" id="fecha" name="fecha" th:field="*{fecha}">  -->
+					  <input type="date" class="form-control" id="fecha" name="fecha" th:field="*{fecha}"> 
 					  
-<!-- 					  <label for="hora" class="form-label mt-3">¿A qué hora quieres reservar? (18:00 ejemplo)</label> -->
+					  <label for="hora" class="form-label mt-3">¿A qué hora quieres reservar? (formato "18:00")</label>
 					  
-<!-- 					   <input type="text" class="form-control" id="hora" name="hora" th:field="*{hora}"> -->
+					   <input type="text" class="form-control" id="hora" name="hora" th:field="*{hora}">
 
     				<input type="submit" class="btn btn-primary w-100 mt-3" value="RESERVAR CLASE" />
 

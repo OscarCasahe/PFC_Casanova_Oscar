@@ -40,6 +40,10 @@
 					class="nav-link text-white" th:href="@{/admin/clases}"
 					th:text="#{menu.clases}"></a></li>
 					
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/admin/reservas}"
+					th:text="#{menu.reservas}"></a></li>
+					
 				<li sec:authorize="isAuthenticated()" class="nav-item"><a
 					class="nav-link text-white" th:href="@{/logout}"><i
 						class="bi bi-box-arrow-left"></i></a></li>

@@ -67,7 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 
 	public Usuario updateUsuario(UsuarioDTO usuario) {
-		if (usuario==null || usuario.getNombre()==null || usuario.getApellidos()==null || usuario.getPassword()==null || usuario.getCp()>3 || usuario.getCp() < 0 || usuario.getPlan()==null) {
+		if (usuario==null || usuario.getId()==null ||usuario.getNombre()==null || usuario.getApellidos()==null || usuario.getPassword()==null || usuario.getPlan()>=3 || usuario.getPlan() < 0 || usuario.getPlan()==null || usuario.getUserName()==null) {
 			return null;			
 		}
 		
@@ -75,7 +75,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		Plan plan = planRepo.findPlanById(usuario.getPlan());
 		
 		userBD.setId(usuario.getId());
-		userBD.setUserName(usuario.getUsuario());
+		userBD.setUserName(usuario.getUserName());
 		userBD.setNombre(usuario.getNombre());
 		userBD.setApellidos(usuario.getApellidos());
 		userBD.setEmail(usuario.getEmail());
@@ -88,12 +88,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 
-//	@Override
-//	public Optional<Usuario> findUsuarioByUserName(String userName) {
-//		Optional<Usuario> user = userRepo.findByUserName(userName);
-//
-//		return user;
-//	}
+	@Override
+	public Optional<Usuario> findUsuarioByUserName(String userName) {
+		Optional<Usuario> user = userRepo.findByUserName(userName);
+
+		return user;
+	}
 
 	
 }

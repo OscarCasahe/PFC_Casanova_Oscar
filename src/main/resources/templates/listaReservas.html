@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='List Reservas')">
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-10 mt-5 mb-5">
+			
+				
+			<h3 class="mb-4">Lista de Reservas:</h3>
+				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
+						<thead class="table-light">
+						<tr>
+							<th>Usuario</th>
+							<th>Clase </th>
+							<th>Fecha</th>
+							<th>Hora</th>
+						</tr>
+						</thead>					
+						<tbody>
+						 <tr th:each="r : ${reservas}">
+						 	<td th:text="${r.getUsuario().getNombre()}"></td>
+						 	<td th:text="${r.getClase().getNombre()}"></td>
+						 	<td th:text="${r.getFecha()}"></td>
+						 	<td th:text="${r.getHora()}"></td>
+						    
+						 </tr>					
+						</tbody>
+					</table>
+			</div>		
+		</div>
+	</div>
+</body>
+</html> 

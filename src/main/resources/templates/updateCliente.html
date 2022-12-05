@@ -14,7 +14,7 @@
 			
 				<form action="#" th:action="@{/admin/clientes/update}" th:object="${usuario}" method="post">
 				
-    				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${usuario.getId()}" disabled >
+    				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${id}" disabled >
     				<input type="hidden" class="form-control" id="password" name="password" th:field="*{password}" value="${usuario.getPassword()}" required >
 
 				

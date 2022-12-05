@@ -3,6 +3,7 @@ package org.iesalixar.servidor.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.iesalixar.servidor.dto.ClaseDTO;
 import org.iesalixar.servidor.dto.ReservaDTO;
 import org.iesalixar.servidor.dto.UsuarioDTO;
@@ -75,6 +76,7 @@ public class ClienteController {
 		Optional<Usuario> usuario = usuarioService.findUsuarioById(Long.parseLong(user));
 		List<Plan> planes =  planService.getAllPlans();
 		
+		//COGE LOS DATOS DEL USUARIO CORRECTAMENTE
 		model.addAttribute("usuario",usuario.get());		
 		model.addAttribute("planes",planes);		
 		
@@ -90,8 +92,10 @@ public class ClienteController {
 
 		usuarioService.updateUsuario(usuario);
 
-		return "redirect:/admin/clases/";
+		return "redirect:/admin/clientes/";
 	}
+	
+	
 	
 	@RequestMapping("/admin/clientes/delete")
 	public String clientesDelete(@RequestParam(required = false, name = "cliente") String cliente, Model model) {
@@ -160,7 +164,15 @@ public class ClienteController {
 		return "redirect:/admin/clases/";
 	}
 
-	
+	//RESERVAS
+	@GetMapping("/admin/reservas")
+	public String reservas(Model model) {
+
+		List<Reserva> reservas = reservaService.getAllReservas();
+
+		model.addAttribute("reservas", reservas);
+		return "listaReservas";
+	}
 	
 	
 	
@@ -196,6 +208,9 @@ public class ClienteController {
 		return "infoPage";
 	}
 	
+	
+	
+	//NO CONSIGUE UN ID, VALOR NULL
 	@GetMapping("/reservarClase")
 	public String reserva(@RequestParam(required = false, name = "reserva") String reserva, Model model) {
 
@@ -210,7 +225,7 @@ public class ClienteController {
 
 		model.addAttribute("clases", clases);
 		model.addAttribute("reserva", res);
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("usuario", usuario.get());
 		
 		return "reservarClase";
 	}

@@ -1,5 +1,7 @@
 package org.iesalixar.servidor.services;
 
+import java.util.Optional;
+
 import org.iesalixar.servidor.model.JPAUserDetails;
 import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.repository.UsuarioRepository;
@@ -19,7 +21,7 @@ public class JPAUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		//Obtengo el usuario
-		Usuario user = usuarioRepository.findByUserName(username);
+		Optional<Usuario> user = usuarioRepository.findByUserName(username);
 		
 		
 		//Si el usuario no existe debo devolver una excepción
@@ -28,7 +30,7 @@ public class JPAUserDetailsService implements UserDetailsService {
 		}
 		
 		//Adapto la información del usuario al UserDetails que es lo que debe devolver el método
-		JPAUserDetails userDetails = new JPAUserDetails(user);
+		JPAUserDetails userDetails = new JPAUserDetails(user.get());
 		return userDetails;
 		
 	}
