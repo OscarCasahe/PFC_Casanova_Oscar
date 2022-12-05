@@ -1,24 +1,50 @@
 <meta charset="UTF-8">
-<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-light bg-primary ">
+<nav th:fragment="menu"
+	class="navbar navbar-expand-lg navbar-light bg-primary ">
 	<div class="container-fluid">
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
+		<div class="collapse navbar-collapse" id="navbarNav" styles="color=""">
 			<ul class="navbar-nav">
-				<li class="nav-item "><a class="nav-link text-white" aria-current="page"
-					href="/" th:text="#{menu.home}"></a></li>
-				<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link text-white" th:href="@{/login}" th:text="#{menu.login}"></a>
-				</li>	
-				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a class="nav-link text-white" th:href="@{/departments}" th:text="#{menu.departments}"></a>				
-				</li>
-				</li>
-				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a class="nav-link text-white " th:href="@{/alumnos/}" th:text="#{menu.students}"></a></li>
-				<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link text-white" th:href="@{/logout}"><i class="bi bi-box-arrow-left"></i></a></li>
-				<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link text-white" th:href="@{/register}" th:text="#{menu.register}"></a>
-				</li>
+				<li class="nav-item col-1"><a class="nav-link" aria-current="page"
+					href="/"><img class="img-fluid" src="/img/logo.png"></img></a></li>
+					
+				<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/login}"
+					th:text="#{menu.login}"></a></li>
+					
+				<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/register}"
+					th:text="#{menu.register}"></a></li>
+					
+				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
+					class="nav-link text-white " th:href="@{/contrataPlan}"
+					th:text="#{menu.plan}"></a></li>
+					
+				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/reservarClase}"
+					th:text="#{menu.reserva}"></a></li>
+					
+				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/infoPage}"
+					th:text="#{menu.saber}"></a></li>
+					
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/admin/clientes}"
+					th:text="#{menu.clientes}"></a></li>
+					
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/admin/clases}"
+					th:text="#{menu.clases}"></a></li>
+					
+				<li sec:authorize="isAuthenticated()" class="nav-item"><a
+					class="nav-link text-white" th:href="@{/logout}"><i
+						class="bi bi-box-arrow-left"></i></a></li>
+
+
 			</ul>
 		</div>
 	</div>

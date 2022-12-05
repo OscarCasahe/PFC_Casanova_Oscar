@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iesalixar.servidor.dto.ClaseDTO;
+import org.iesalixar.servidor.dto.ReservaDTO;
 import org.iesalixar.servidor.dto.UsuarioDTO;
 import org.iesalixar.servidor.model.Clase;
+import org.iesalixar.servidor.model.JPAUserDetails;
 import org.iesalixar.servidor.model.Monitor;
 import org.iesalixar.servidor.model.Plan;
 import org.iesalixar.servidor.model.Reserva;
@@ -16,6 +18,7 @@ import org.iesalixar.servidor.services.PlanServiceImpl;
 import org.iesalixar.servidor.services.ReservaServiceImpl;
 import org.iesalixar.servidor.services.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -196,15 +199,43 @@ public class ClienteController {
 	@GetMapping("/reservarClase")
 	public String reserva(@RequestParam(required = false, name = "reserva") String reserva, Model model) {
 
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
+		JPAUserDetails userDetail = (JPAUserDetails) auth.getPrincipal();
+		Optional<Usuario> usuario = usuarioService.findUsuarioByUserName(userDetail.getUsername());
+
+		
+		
 		Reserva res = new Reserva();
 		List<Clase> clases = claseService.getAllClases();
 
 		model.addAttribute("clases", clases);
+		model.addAttribute("reserva", res);
+		model.addAttribute("usuario", usuario);
 		
 		return "reservarClase";
 	}
 	
-	//Falta el Post de ContrataPlan
+	@PostMapping("/reservarClase")
+	public String reservaPost(@ModelAttribute ReservaDTO reserva) {
+		
+		if (reserva==null) {
+			return "redirect:/index";
+		}
+		
+		Reserva reservaBD = new Reserva();
+		Optional<Clase> clase = claseService.findClaseById(reserva.getId_clase());
+		Optional<Usuario> cliente = usuarioService.findUsuarioById(reserva.getId_usuario());
+		
+		reservaBD.setClase(clase.get());
+		reservaBD.setUsuario(cliente.get());
+		reservaBD.setFecha(reserva.getFecha());
+		reservaBD.setHora(reserva.getHora());
+		
+		reservaBD = reservaService.insertReserva(reservaBD);
+		
 
-	//
+		
+		return "redirect:/index";
+		
+	}
 }

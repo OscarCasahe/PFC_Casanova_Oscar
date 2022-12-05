@@ -1,16 +1,38 @@
 package org.iesalixar.servidor.dto;
 
+import org.iesalixar.servidor.model.Plan;
+
 public class UsuarioDTO {
 	
+	private Long id;
 	private String usuario;
 	private String nombre;
 	private String apellidos;
 	private String email;
 	private String password;
+	private int cp;
+	private Long plan;
 	
 	public UsuarioDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 
 	public String getUsuario() {
 		return usuario;
@@ -51,7 +73,44 @@ public class UsuarioDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getCp() {
+		return cp;
+	}
+
+	public void setCp(int cp) {
+		this.cp = cp;
+	}
+
+
+
+
+	public Long getPlan() {
+		return plan;
+	}
+
+
+
+
+	public void setPlan(Long plan) {
+		this.plan = plan;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "UsuarioDTO [id=" + id + ", usuario=" + usuario + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", email=" + email + ", password=" + password + ", cp=" + cp + ", plan=" + plan + "]";
+	}
+
 	
 	
 
+
+
+	
+	
+	
 }
