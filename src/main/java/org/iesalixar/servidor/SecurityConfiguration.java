@@ -47,10 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		 * https://www.baeldung.com/spring-security-expressions */
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
-		//.antMatchers("").hasRole("ADMIN")
+		.antMatchers().hasRole("ADMIN")
+		.antMatchers().hasRole("USER")
 		.antMatchers("/register").not().authenticated()
-		.antMatchers("/admin/clientes, /admin/clientes/update, admin/clases/, admin/clases/add, admin/clases/update").hasRole("ADMIN")
-		.antMatchers("/cliente/calendario, cliente/info").hasRole("USER")
 		.and()
 		.formLogin();		
 	}
@@ -62,8 +61,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     public PasswordEncoder getPasswordEncoder() {         
 		return new BCryptPasswordEncoder(15);
     }
-	
-	
-
 	
 }

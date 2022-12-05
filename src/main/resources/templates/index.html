@@ -1,63 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='Main')">
-<meta charset="UTF-8">
-</head>
+<head th:replace="fragments/bootstrap::head(title='Main')"></head>
 <body>
 	<div class="container mt-5">
 		<div class="row mt-5 justify-content-center">
 			<header th:insert="fragments/parts::menu"></header>
-			<div sec:authorize="!isAuthenticated()" class="col-10 mt-5 mb-5">
-
-				<h2>¿Quienes somos?</h2>
-				<div class="row col-12 mt-2 mb-2">
-					Hola guerrero!! Te estarás preguntando quienes somos y por qué
-					deberías elegirnos como tu gimnasio de confianza, pues bien, en
-					Light-Wheight Fitness no compartimos la idea de hacer creer al
-					mundo que el deporte ha de ser una obligación, ni mucho menos, en
-					Light-Weight Fitness nos interesa que nuestros clientes estén lo
-					más cómodos posible, y que, independientemente de tu nivel de
-					entreno, te sientas libre de preguntar a nuestros trabajadores y
-					hacer que tus entrenos sean de la mejor calidad posible para que
-					obtengas los mejores resultados posibles. Si buscas un seguimiento
-					mas personalizado puedes incluso contratar el plan que más se
-					acomode a ti y poder llevar a cabo un seguimiento de peso,
-					estatura, porcentaje graso y mucho más. El que algo quiere algo le
-					cuesta, asi que ya sabes, <span>Levántate y
-						empieza el cambio</span>.
-				</div>
-
-				<img src="/img/intro.png" class="img-fluid">
-			</div>
-
-
-			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
-
-				<h3>
-					¿Quieres ponerte en forma?
-					</h2>
-					<div class="row col-12 mt-3 mb-5">Hola de nuevo guerrero,
-						¿Quieres ponerte en forma? pues contrata ya tu plan, en la pestaña
-						"¡Contrata tu plan!" podrás encontrar los tipos de planes que
-						ofrecemos y seleccionar aquel que se acomode más a lo que buscas,
-						además de contar con acceso a nuestras clases deportivas para
-						hacer aún más divertido hacer deporte.En Light-Wheigth Fitness
-						intentamos hacer cambiar la visión hacia el deporte cambiar ese
-						chip para que el deporte forme parte de nuestra vida a modo de
-						diversión para poder conseguir así nuestra mejor versión y sobre
-						todo mejorar nuestra salud, asi que ya sabes, ¿A que esperas?.</div>
-
-					<img src="/img/monitor.png" class="img-fluid">
-			</div>
-			
-			
-			
-
-
-
+			<div class="col-10 mt-5 mb-5">
+				<img src="/img/background.png" class="img-fluid">
+			</div>		
+			<footer th:replace="fragments/parts::footer(info='menu.home')"></footer>
 		</div>
-
-
 	</div>
 </body>
 </html>

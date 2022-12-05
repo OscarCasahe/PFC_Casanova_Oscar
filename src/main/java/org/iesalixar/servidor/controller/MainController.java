@@ -28,7 +28,18 @@ public class MainController {
 		return "index";
 	}
 	
-
+	@RequestMapping("/about")
+	public String about(Model model) {
+		model.addAttribute("contenido","ABOUT");
+		return "about";
+	}
+	
+	
+	@RequestMapping("/services")
+	public String services(Model model)  {
+		model.addAttribute("contenido","SERVICIOS");
+		return "services";
+	}
 	
 	
 	@GetMapping("/register")
@@ -49,7 +60,6 @@ public class MainController {
 		userBD.setUserName(usuario.getUsuario());
 		userBD.setRole("ROLE_USER");
 		userBD.setEmail(usuario.getEmail());		
-		userBD.setCp(usuario.getCp());		
 		userBD.setPassword(new BCryptPasswordEncoder(15).encode(usuario.getPassword()));
 		
 		userBD = usuarioService.insertUsuario(userBD);
