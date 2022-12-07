@@ -1,7 +1,10 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 @Entity
@@ -157,6 +163,8 @@ public class Usuario implements Serializable {
 				+ ", nombre=" + nombre + ", apellidos=" + apellidos + ", role=" + role + ", cp=" + cp + ", activo="
 				+ activo + ", plan=" + plan + ", reservas=" + reservas + "]";
 	}
+
+	
 
 
 	
