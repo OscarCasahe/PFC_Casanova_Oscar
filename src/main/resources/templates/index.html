@@ -23,35 +23,46 @@
 					mas personalizado puedes incluso contratar el plan que más se
 					acomode a ti y poder llevar a cabo un seguimiento de peso,
 					estatura, porcentaje graso y mucho más. El que algo quiere algo le
-					cuesta, asi que ya sabes, <span>Levántate y
-						empieza el cambio</span>.
+					cuesta, asi que ya sabes, <span>Levántate y empieza el
+						cambio</span>. <img src="/img/intro.png" class="img-fluid">
 				</div>
 
-				<img src="/img/intro.png" class="img-fluid">
+
 			</div>
 
 
-			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
+			<div sec:authorize="hasRole('ROLE_USER')" class="col-10 mt-5 mb-5">
 
-				<h3>
-					¿Quieres ponerte en forma?
-					</h2>
-					<div class="row col-12 mt-3 mb-5">Hola de nuevo guerrero,
-						¿Quieres ponerte en forma? pues contrata ya tu plan, en la pestaña
-						"¡Contrata tu plan!" podrás encontrar los tipos de planes que
-						ofrecemos y seleccionar aquel que se acomode más a lo que buscas,
-						además de contar con acceso a nuestras clases deportivas para
-						hacer aún más divertido hacer deporte.En Light-Wheigth Fitness
-						intentamos hacer cambiar la visión hacia el deporte cambiar ese
-						chip para que el deporte forme parte de nuestra vida a modo de
-						diversión para poder conseguir así nuestra mejor versión y sobre
-						todo mejorar nuestra salud, asi que ya sabes, ¿A que esperas?.</div>
+				<h3>¿Quieres ponerte en forma?</h3>
+				<div class="row col-12 mt-3 mb-5">
+					Hola de nuevo guerrero, ¿Quieres ponerte en forma? pues contrata ya
+					tu plan, en la pestaña "¡Contrata tu plan!" podrás encontrar los
+					tipos de planes que ofrecemos y seleccionar aquel que se acomode
+					más a lo que buscas, además de contar con acceso a nuestras clases
+					deportivas para hacer aún más divertido hacer deporte.En
+					Light-Wheigth Fitness intentamos hacer cambiar la visión hacia el
+					deporte cambiar ese chip para que el deporte forme parte de nuestra
+					vida a modo de diversión para poder conseguir así nuestra mejor
+					versión y sobre todo mejorar nuestra salud, asi que ya sabes, ¿A
+					que esperas?. <img src="/img/monitor.png" class="img-fluid">
+				</div>
 
-					<img src="/img/monitor.png" class="img-fluid">
+
 			</div>
-			
-			
-			
+
+
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="col-10 mt-5 mb-5">
+
+				<h3>Bienvenido al hall de Administrador</h3>
+				<div class="row col-12 mt-3 mb-5">
+					<img src="/img/admin.png" class="img-fluid">
+				</div>
+
+
+			</div>
+
+
+
 
 
 
