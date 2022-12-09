@@ -1,65 +1,135 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='Reservar Clase')">
-<meta charset="UTF-8">
-</head>
-<body>
-	<div class="container mt-5">
-		<div class="row mt-5 justify-content-center">
-			<header th:insert="fragments/parts::menu"></header>
-			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
+  <head th:replace="fragments/bootstrap::head(title='Reservar Clase')">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap"
+      rel="stylesheet"
+    />
+    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
+  </head>
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
 
-				<form action="#" th:action="@{/reservarClase}"
-					th:object="${reserva}" method="post">
-  
+    .header {
+      padding: 0rem;
+    }
 
-					<label for="clase" class="form-label mt-3">¿Qué clase quieres reservar?</label> 
-					
-					<select id="clase" name="clase" class="form-select form-select-lg mb-3" th:field="*{clase}">
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
 
-						<option th:each="c : ${clases}" th:value="${c.getId()}" th:text="${c.nombre}"></option>
+    .header > div {
+      padding: 0rem;
+    }
 
-					</select> 
-					
-					 <label for="fecha" class="form-label mt-3">¿Qué día quieres reservar?</label>
-					 
-					  <input type="date" class="form-control" id="fecha" name="fecha" th:field="*{fecha}"> 
-					  
-					  <label for="hora" class="form-label mt-3">¿A qué hora quieres reservar? (formato "18:00")</label>
-					  
-					   <input type="text" class="form-control" id="hora" name="hora" th:field="*{hora}">
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
 
-    				<input type="submit" class="btn btn-primary w-100 mt-3" value="RESERVAR CLASE" />
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
 
+    .logo {
+      display: flex;
+      width: 23rem;
+    }
 
+    .portada {
+      margin-top: 2.5rem;
+      width: 70rem;
+    }
 
-				</form>
+    .btn {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+  </style>
+  <body>
+    <div class="container-fluid col-12 ml-0 mr-0">
+      <div class="fondo row justify-content-center">
+        <header class="header" th:insert="fragments/parts::menu"></header>
+        <div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5 vh-100">
+          <form
+            action="#"
+            th:action="@{/reservarClase}"
+            th:object="${reserva}"
+            method="post"
+          >
+            <label for="clase" class="form-label mt-3"
+              >¿Qué clase quieres reservar?</label
+            >
 
+            <select
+              id="clase"
+              name="clase"
+              class="form-select form-select-lg mb-3"
+              th:field="*{clase}"
+            >
+              <option
+                th:each="c : ${clases}"
+                th:value="${c.getId()}"
+                th:text="${c.nombre}"
+              ></option>
+            </select>
 
-			</div>
+            <label for="fecha" class="form-label mt-3"
+              >¿Qué día quieres reservar?</label
+            >
 
+            <input
+              type="date"
+              class="form-control"
+              id="fecha"
+              name="fecha"
+              th:field="*{fecha}"
+            />
 
+            <label for="hora" class="form-label mt-3"
+              >¿A qué hora quieres reservar? (formato "18:00")</label
+            >
 
+            <input
+              type="text"
+              class="form-control"
+              id="hora"
+              name="hora"
+              th:field="*{hora}"
+            />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</div>
-	</div>
-</body>
+            <input
+              type="submit"
+              class="btn btn-primary w-100 mt-3"
+              value="RESERVAR CLASE"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -3,14 +3,83 @@
 <head>
 <head th:replace="fragments/bootstrap::head(title='Update Clase')">
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="static/css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap"
+  rel="stylesheet"
+/>
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+
 </head>
+<style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
+
+    .header {
+      padding: 0rem;
+    }
+
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+
+    .header > div {
+      padding: 0rem;
+    }
+
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
+
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      width: 23rem;
+    }
+
+    .portada {
+      margin-top: 2.5rem;
+      width: 70rem;
+    }
+
+	.btn {
+		background: rgb(77, 68, 5);
+		background: linear-gradient(
+		  90deg,
+		  rgba(77, 68, 5, 1) 0%,
+		  rgba(120, 101, 27, 1) 47%,
+		  rgba(77, 68, 5, 1) 100%
+		);	}
+  </style>
 <body>
-	<div class="container">
-				<header th:insert="fragments/parts::menu"></header>
+    <div class="container-fluid col-12 ml-0 mr-0">
+		<div class="fondo row justify-content-center">
+			<header class="header" th:insert="fragments/parts::menu"></header>
 	
-		<div class="row justify-content-center">
-			<div class="col-8">
-			
+				<div class="row justify-content-center vh-100">
+					<div class="col-8">
+				<h3 class="text-center mt-5">ACTUALIZACIÓN DE CLIENTE</h3>
+
 				<form action="#" th:action="@{/admin/clientes/update}" th:object="${usuario}" method="post">
 				
     				<input type="hidden" class="form-control" id="id" name="id" th:field="*{id}" value="${id}" readonly="true"  >
@@ -33,12 +102,13 @@
 					<label for="cp" class="form-label mt-3">CP</label>
     				<input type="text" class="form-control" id="cp" name="cp" th:field="*{cp}" value="${usuario.getCp()}" required >
     				
-    				<label for="plan" class="form-label mt-3">Plan</label>
+<!--     				<label th:if="${usuario.getPlan() != null}" for="plan" class="form-label mt-3">Plan</label> -->
 					
-<!-- 					SI EL USUARIO TIENE UN PLAN PETA -->
-<!-- 					<select id="plan" name="plan" class="form-select form-select-lg mb-3"  th:field="*{plan}"> -->
+ <!-- 					SI EL USUARIO TIENE UN PLAN PETA -->
+<!-- 					<select th:if="${usuario.getPlan() != null}" id="plan" name="plan" class="form-select form-select-lg mb-3"  th:field="*{plan}"> -->
 					
-<!-- 						<option th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}"></option> -->
+<!--  						<option th:if="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" selected></option>  -->
+<!--  						<option th:unless="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" selected></option>  -->
 					
 <!-- 					</select> -->
 
@@ -49,6 +119,7 @@
     					
 				</form>
 			</div>		
+		</div>
 		</div>
 	</div>
 </body>

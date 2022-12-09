@@ -1,29 +1,141 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='Registrase')">
-<meta charset="UTF-8">
-</head>
-<body>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-6">
-				<form action="#" th:action="@{/register}" th:object="${usuario}" method="post">
-					<label for="usuario" class="form-label mt-3">Usuario</label>
-    				<input type="text" class="form-control" id="usuario" name="usuario" th:field="*{userName}" required >	
-    				<label for="nombre" class="form-label mt-3">Nombre</label>
-    				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required >
-    				<label for="apellidos" class="form-label mt-3">Apellidos</label>
-    				<input type="text" class="form-control" id="apellidos" name="apellidos" th:field="*{apellidos}" required >
-    				<label for="cp" class="form-label mt-3">CP</label>
-    				<input type="text" class="form-control" id="cp" name="cp" th:field="*{cp}" required >
-    				<label for="email" class="form-label mt-3">Email</label>
-    				<input type="email" class="form-control" id="email" name="email" th:field="*{email}" required >
-    				<label for="password" class="form-label mt-3">Password</label>
-    				<input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
-    				<input type="submit" class="btn btn-primary w-100 mt-3" value="REGISTRAR" />
-				</form>
-			</div>		
-		</div>
-	</div>
-</body>
+  <head th:replace="fragments/bootstrap::head(title='Registrase')">
+    <meta charset="UTF-8" />
+  </head>
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
+
+    .header {
+      padding: 0rem;
+    }
+
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+
+    .header > div {
+      padding: 0rem;
+    }
+
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
+
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      width: 23rem;
+    }
+
+    .portada {
+      margin-top: 2.5rem;
+      width: 70rem;
+    }
+
+    .btn {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+  </style>
+  <body>
+    <div class="container-fluid col-12 ml-0 mr-0">
+      <div class="fondo row justify-content-center vh-100">
+        <header class="header" th:insert="fragments/parts::menu"></header>
+
+        <div class="col-6">
+          <form
+            action="#"
+            th:action="@{/register}"
+            th:object="${usuario}"
+            method="post"
+          >
+            <label for="usuario" class="form-label mt-3">Usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="usuario"
+              name="usuario"
+              th:field="*{userName}"
+              required
+            />
+            <label for="nombre" class="form-label mt-3">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              th:field="*{nombre}"
+              required
+            />
+            <label for="apellidos" class="form-label mt-3">Apellidos</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellidos"
+              name="apellidos"
+              th:field="*{apellidos}"
+              required
+            />
+            <label for="cp" class="form-label mt-3">CP</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cp"
+              name="cp"
+              th:field="*{cp}"
+              required
+            />
+            <label for="email" class="form-label mt-3">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              th:field="*{email}"
+              required
+            />
+            <label for="password" class="form-label mt-3">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              th:field="*{password}"
+              required
+            />
+            <input
+              type="submit"
+              class="btn btn-primary w-100 mt-3"
+              value="REGISTRAR"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

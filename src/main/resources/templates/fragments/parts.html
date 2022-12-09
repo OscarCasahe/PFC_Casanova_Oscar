@@ -10,43 +10,47 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav" styles="color=""">
 			<ul class="navbar-nav">
-				<li class="nav-item col-1"><a class="nav-link" aria-current="page"
+				<li class=" text-center nav-item col-1"><a class="nav-link" aria-current="page"
 					href="/"><img class=" logo img-fluid" src="/img/logo.png"></img></a></li>
 					
 				<li sec:authorize="!isAuthenticated()" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/login}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/login}"
 					th:text="#{menu.login}"></a></li>
 					
 				<li sec:authorize="!isAuthenticated()" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/register}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/register}"
 					th:text="#{menu.register}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-					class="nav-link text-white " th:href="@{/contrataPlan}"
+					class="mt-2 text-center nav-link text-white " th:href="@{/contrataPlan}"
 					th:text="#{menu.plan}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/reservarClase}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/reservarClase}"
 					th:text="#{menu.reserva}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/infoPage}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/infoPage}"
 					th:text="#{menu.saber}"></a></li>
+
+				<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
+					class="mt-2 text-center nav-link text-white" th:href="@{/vistaPerfil}"
+					th:text="#{menu.perfil}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/admin/clientes}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/admin/clientes}"
 					th:text="#{menu.clientes}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/admin/clases}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/admin/clases}"
 					th:text="#{menu.clases}"></a></li>
 					
 				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
-					class="nav-link text-white" th:href="@{/admin/reservas}"
+					class="mt-2 text-center nav-link text-white" th:href="@{/admin/reservas}"
 					th:text="#{menu.reservas}"></a></li>
 					
 				<li sec:authorize="isAuthenticated()" class="nav-item "><a
-					class="nav-link text-white" th:href="@{/logout}"><i
+					class="mt-2 text-center nav-link text-white" th:href="@{/logout}"><i
 						class="bi bi-box-arrow-left"></i></a></li>
 
 

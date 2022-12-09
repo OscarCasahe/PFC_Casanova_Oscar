@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head th:replace="fragments/bootstrap::head(title='List Reservas')">
+  <head th:replace="fragments/bootstrap::head(title=' Mi Perfil')">
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="static/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,8 +71,44 @@
       <div class="fondo row justify-content-center">
         <header class="header" th:insert="fragments/parts::menu"></header>
         <div class="col-10 mt-5 mb-5 vh-100">
-          <h3 class="mb-4">Lista de Reservas</h3>
+          <h3>
+            Perfil personal:
+            <b th:text="${c.getNombre()}+' ' +${c.getApellidos()}"></b>
+          </h3>
           <table
+            sec:authorize="isAuthenticated()"
+            class="table table-stripped table-hover"
+          >
+            <thead class="table-light">
+              <tr class="text-center">
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>CP</th>
+                <th>Plan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 												 <tr th:if="${c.getPlan()} and ${c.getNombre()!='admin'}" th:each="c : ${clientes}"> -->
+
+              <tr class="text-center" th:if="${c.getPlan()}">
+                <td th:text="${c.getNombre()}"></td>
+                <td th:text="${c.getApellidos()}"></td>
+                <td th:text="${c.getCp()}"></td>
+                <td th:text="${c.getPlan().getNombre()}"></td>
+              </tr>
+
+              <tr class="text-center" th:unless="${c.getPlan()}">
+                <td th:text="${c.getNombre()}"></td>
+                <td th:text="${c.getApellidos()}"></td>
+                <td th:text="${c.getCp()}"></td>
+                <td th:text=" 'No ' + 'contratado'"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="mt-5 mb-3">Reservas realizadas:</h3>
+
+          <table 
             sec:authorize="isAuthenticated()"
             class="table table-stripped table-hover"
           >
@@ -86,10 +122,10 @@
             </thead>
             <tbody>
               <tr class="text-center" th:each="r : ${reservas}">
-                <td th:text="${r.getUsuario().getNombre()}"></td>
-                <td th:text="${r.getClase().getNombre()}"></td>
-                <td th:text="${r.getFecha()}"></td>
-                <td th:text="${r.getHora()}"></td>
+                <td th:if="${r.getUsuario().getId() == c.getId()}" th:text="${r.getUsuario().getNombre()}"></td>
+                <td th:if="${r.getUsuario().getId() == c.getId()}" th:text="${r.getClase().getNombre()}"></td>
+                <td th:if="${r.getUsuario().getId() == c.getId()}" th:text="${r.getFecha()}"></td>
+                <td th:if="${r.getUsuario().getId() == c.getId()}" th:text="${r.getHora()}"></td>
               </tr>
             </tbody>
           </table>

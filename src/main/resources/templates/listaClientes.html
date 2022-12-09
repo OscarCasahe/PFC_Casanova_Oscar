@@ -79,9 +79,7 @@ rel="stylesheet"
 			<h3>Lista de Clientes:</h3>
 				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
 						<thead class="table-light">
-				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
-						<thead class="table-light">
-						<tr>
+						<tr class="text-center">
 							<th>Nombre</th>
 							<th>Apellidos </th>
 							<th>CP</th>
@@ -93,7 +91,7 @@ rel="stylesheet"
 						<tbody>
 <!-- 												 <tr th:if="${c.getPlan()} and ${c.getNombre()!='admin'}" th:each="c : ${clientes}"> -->
 						
-						 <tr th:if="${c.getPlan()}" th:each="c : ${clientes}">
+						 <tr class="text-center" th:if="${c.getPlan()}" th:each="c : ${clientes}">
 						 	<td th:text="${c.getNombre()}"></td>
 						 	<td th:text="${c.getApellidos()}"></td>
 						 	<td th:text="${c.getCp()}"></td>
@@ -104,7 +102,7 @@ rel="stylesheet"
 						    <td th:unless="${c.getNombre()=='admin'}" class="text-center"><a class="link-dark" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/clientes/update(cliente=${c.getId()})}"><i class="bi bi-pencil-fill"></i></a></td>
 						 </tr>	
 						 
-						 	<tr  th:unless="${c.getPlan()}" th:each="c : ${clientes}">
+						 	<tr class="text-center" th:unless="${c.getPlan()}" th:each="c : ${clientes}">
 						 	<td th:text="${c.getNombre()}"></td>
 						 	<td th:text="${c.getApellidos()}"></td>
 						 	<td th:text="${c.getCp()}"></td>

@@ -77,7 +77,7 @@
             class="table table-stripped table-hover"
           >
             <thead class="table-light">
-              <tr>
+              <tr class="text-center">
                 <th>Nombre</th>
                 <th>Asistentes</th>
                 <th>Monitor</th>
@@ -86,7 +86,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="c : ${clases}">
+              <tr class="text-center" th:each="c : ${clases}">
                 <td th:text="${c.getNombre()}"></td>
                 <td th:text="${c.getAsistentes()}"></td>
                 <td th:text="${c.getMonitor().getNombre()}"></td>

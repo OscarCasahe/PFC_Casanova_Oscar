@@ -67,12 +67,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 
 	public Usuario updateUsuario(UsuarioDTO usuario) {
-		if (usuario==null || usuario.getId()==null ||usuario.getNombre()==null || usuario.getApellidos()==null || usuario.getPassword()==null || usuario.getPlan()>=3 || usuario.getPlan() < 0 || usuario.getPlan()==null || usuario.getUserName()==null) {
+		if (usuario==null || usuario.getId()==null ||usuario.getNombre()==null || usuario.getApellidos()==null || usuario.getPassword()==null || usuario.getPlan()>=3 || usuario.getPlan() < 0 || usuario.getUserName()==null) {
 			return null;			
 		}
 		
 		Usuario userBD = new Usuario();
-		Plan plan = planRepo.findPlanById(usuario.getPlan());
 		
 		userBD.setId(usuario.getId());
 		userBD.setUserName(usuario.getUserName());
@@ -82,7 +81,14 @@ public class UsuarioServiceImpl implements UsuarioService{
 		userBD.setPassword(usuario.getPassword());
 		userBD.setCp(usuario.getCp());
 		userBD.setRole(usuario.getRole());
-		userBD.setPlan(plan);
+		
+		if (usuario.getPlan()!=null) {
+			Plan plan = planRepo.findPlanById(usuario.getPlan());
+			userBD.setPlan(plan);
+		} else {
+			userBD.setPlan(null);
+		}
+
 		
 		
 		return userRepo.save(userBD);		

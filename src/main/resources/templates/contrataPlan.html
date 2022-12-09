@@ -2,21 +2,93 @@
 <html>
 <head th:replace="fragments/bootstrap::head(title='Contrata tu plan')">
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="static/css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap"
+  rel="stylesheet"
+/>
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+
 </head>
+<style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
+
+    .header {
+      padding: 0rem;
+    }
+
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+
+    .header > div {
+      padding: 0rem;
+    }
+
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
+
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      width: 23rem;
+    }
+
+    .portada {
+      margin-top: 2.5rem;
+      width: 70rem;
+    }
+
+	.btn {
+		background: rgb(77, 68, 5);
+		background: linear-gradient(
+		  90deg,
+		  rgba(77, 68, 5, 1) 0%,
+		  rgba(120, 101, 27, 1) 47%,
+		  rgba(77, 68, 5, 1) 100%
+		);	}
+
+		.formulario {
+			height: 36rem;
+		}
+
+  </style>
 <body>
-	<div class="container mt-5">
-		<div class="row mt-5 justify-content-center">
-			<header th:insert="fragments/parts::menu"></header>
-			<div sec:authorize="isAuthenticated()" class="col-10 mt-5 mb-5">
+    <div class="container-fluid col-12 ml-0 mr-0">
+		<div class="fondo row justify-content-center">
+			<header class="header" th:insert="fragments/parts::menu"></header>
+			<div sec:authorize="isAuthenticated()" class=" col-10 mt-5 mb-5 vh-100">
 
 				<form action="#" th:action="@{/contrataPlan}" th:object="${cliente}" method="post">
-								<div class="d-flex justify-content-around">
+					<div class="d-flex justify-content-around">
 
 					<div class="card mt-5" style="width: 18rem;">
 						<img class="card-img-top" src="/img/monitor.png"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title">1 Mes 39'99€</h5>
+							<h5 class="card-title text-center">1 Mes 39'99€</h5>
 						</div>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">Acceso de Lunes a Viernes</li>
@@ -40,7 +112,7 @@
 						<img class="card-img-top" src="/img/mancuernas.png"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title">2 Meses 69'99€</h5>
+							<h5 class="card-title text-center">2 Meses 69'99€</h5>
 						</div>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">Acceso de Lunes a Sabado
@@ -65,7 +137,7 @@
 						<img class="card-img-top" src="/img/sauna.png"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title">4 Meses 119'99€</h5>
+							<h5 class="card-title text-center">4 Meses 119'99€</h5>
 						</div>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">Acceso de Lunes a Sabado

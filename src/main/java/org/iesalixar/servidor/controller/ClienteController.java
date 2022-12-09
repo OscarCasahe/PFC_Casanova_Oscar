@@ -215,6 +215,23 @@ public class ClienteController {
 	} 
 
 	
+	@GetMapping("/vistaPerfil")
+	public String vistaPerfil(Model model) {
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
+		JPAUserDetails userDetail = (JPAUserDetails) auth.getPrincipal();
+		Optional<Usuario> usuario = usuarioService.findUsuarioByUserName(userDetail.getUsername());
+		
+
+		List<Reserva> reservas =  reservaService.getAllReservas();
+
+
+		model.addAttribute("c", usuario.get());
+		model.addAttribute("reservas", reservas);
+
+
+		return "vistaPerfil";
+	}
+	
 	
 	@GetMapping("/infoPage")
 	public String infoPage(Model model) {
