@@ -12,6 +12,7 @@ public class UsuarioDTO {
 	private String password;
 	private int cp;
 	private Long plan;
+	private String role;
 	
 	public UsuarioDTO() {
 		// TODO Auto-generated constructor stub
@@ -101,6 +102,22 @@ public class UsuarioDTO {
 
 	public void setPlan(Long plan) {
 		this.plan = plan;
+	}
+	
+	
+
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 

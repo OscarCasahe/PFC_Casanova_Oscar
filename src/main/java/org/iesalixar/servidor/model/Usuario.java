@@ -164,6 +164,8 @@ public class Usuario implements Serializable {
 				+ activo + ", plan=" + plan + ", reservas=" + reservas + "]";
 	}
 
+
+
 	
 
 

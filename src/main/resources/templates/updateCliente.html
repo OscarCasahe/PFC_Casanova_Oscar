@@ -3,7 +3,6 @@
 <head>
 <head th:replace="fragments/bootstrap::head(title='Update Clase')">
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
@@ -36,11 +35,12 @@
     				
     				<label for="plan" class="form-label mt-3">Plan</label>
 					
-					<select id="plan" name="plan" class="form-select form-select-lg mb-3"  th:field="*{plan}">
+<!-- 					SI EL USUARIO TIENE UN PLAN PETA -->
+<!-- 					<select id="plan" name="plan" class="form-select form-select-lg mb-3"  th:field="*{plan}"> -->
 					
-						<option th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}"></option>
+<!-- 						<option th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}"></option> -->
 					
-					</select>
+<!-- 					</select> -->
 
 
 

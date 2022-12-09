@@ -1,74 +1,114 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='Main')">
-<meta charset="UTF-8">
-</head>
-<body>
-	<div class="container mt-5">
-		<div class="row mt-5 justify-content-center">
-			<header th:insert="fragments/parts::menu"></header>
-			<div sec:authorize="!isAuthenticated()" class="col-10 mt-5 mb-5">
+  <head th:replace="fragments/bootstrap::head(title='Main')">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap"
+      rel="stylesheet"
+    />
+    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
+  </head>
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
 
-				<h2>¿Quienes somos?</h2>
-				<div class="row col-12 mt-2 mb-2">
-					Hola guerrero!! Te estarás preguntando quienes somos y por qué
-					deberías elegirnos como tu gimnasio de confianza, pues bien, en
-					Light-Wheight Fitness no compartimos la idea de hacer creer al
-					mundo que el deporte ha de ser una obligación, ni mucho menos, en
-					Light-Weight Fitness nos interesa que nuestros clientes estén lo
-					más cómodos posible, y que, independientemente de tu nivel de
-					entreno, te sientas libre de preguntar a nuestros trabajadores y
-					hacer que tus entrenos sean de la mejor calidad posible para que
-					obtengas los mejores resultados posibles. Si buscas un seguimiento
-					mas personalizado puedes incluso contratar el plan que más se
-					acomode a ti y poder llevar a cabo un seguimiento de peso,
-					estatura, porcentaje graso y mucho más. El que algo quiere algo le
-					cuesta, asi que ya sabes, <span>Levántate y empieza el
-						cambio</span>. <img src="/img/intro.png" class="img-fluid">
-				</div>
+    .header {
+      padding: 0rem;
+    }
 
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
 
-			</div>
+    .header > div {
+      padding: 0rem;
+    }
 
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
 
-			<div sec:authorize="hasRole('ROLE_USER')" class="col-10 mt-5 mb-5">
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
 
-				<h3>¿Quieres ponerte en forma?</h3>
-				<div class="row col-12 mt-3 mb-5">
-					Hola de nuevo guerrero, ¿Quieres ponerte en forma? pues contrata ya
-					tu plan, en la pestaña "¡Contrata tu plan!" podrás encontrar los
-					tipos de planes que ofrecemos y seleccionar aquel que se acomode
-					más a lo que buscas, además de contar con acceso a nuestras clases
-					deportivas para hacer aún más divertido hacer deporte.En
-					Light-Wheigth Fitness intentamos hacer cambiar la visión hacia el
-					deporte cambiar ese chip para que el deporte forme parte de nuestra
-					vida a modo de diversión para poder conseguir así nuestra mejor
-					versión y sobre todo mejorar nuestra salud, asi que ya sabes, ¿A
-					que esperas?. <img src="/img/monitor.png" class="img-fluid">
-				</div>
+    .logo {
+      display: flex;
+      width: 23rem;
+    }
 
+    .portada {
+      margin-top: 2.5rem;
+      width: 70rem;
+    }
+  </style>
 
-			</div>
+  <body>
+    <div class="container-fluid col-12 ml-0 mr-0">
+      <div class="fondo row justify-content-center">
+        <header class="header" th:insert="fragments/parts::menu"></header>
+        <div sec:authorize="!isAuthenticated()" class="col-10 mt-5 mb-5">
+          <h3>¿Quienes somos?</h3>
+          <div class="row col-12 mt-4 mb-4 mr-0 justify-content-center">
+            Hola guerrero!! Te estarás preguntando quienes somos y por qué
+            deberías elegirnos como tu gimnasio de confianza, pues bien, en
+            Light-Wheight Fitness no compartimos la idea de hacer creer al mundo
+            que el deporte ha de ser una obligación, ni mucho menos, en
+            Light-Weight Fitness nos interesa que nuestros clientes estén lo más
+            cómodos posible, y que, independientemente de tu nivel de entreno,
+            te sientas libre de preguntar a nuestros trabajadores y hacer que
+            tus entrenos sean de la mejor calidad posible para que obtengas los
+            mejores resultados posibles. Si buscas un seguimiento mas
+            personalizado puedes incluso contratar el plan que más se acomode a
+            ti y poder llevar a cabo un seguimiento de peso, estatura,
+            porcentaje graso y mucho más. El que algo quiere algo le cuesta, asi
+            que ya sabes,¡Levántate y empieza el cambio!.
+            <img src="/img/intro.png" class="portada" />
+          </div>
+        </div>
 
+        <div sec:authorize="hasRole('ROLE_USER')" class="col-10 mt-5 mb-5">
+          <h3>¿Quieres ponerte en forma?</h3>
+          <div class="row col-12 mt-4 mb-4 mr-0 justify-content-center">
+            Hola de nuevo guerrero, ¿Quieres ponerte en forma? pues contrata ya
+            tu plan, en la pestaña "¡Contrata tu plan!" podrás encontrar los
+            tipos de planes que ofrecemos y seleccionar aquel que se acomode más
+            a lo que buscas, además de contar con acceso a nuestras clases
+            deportivas para hacer aún más divertido hacer deporte.En
+            Light-Wheigth Fitness intentamos hacer cambiar la visión hacia el
+            deporte cambiar ese chip para que el deporte forme parte de nuestra
+            vida a modo de diversión para poder conseguir así nuestra mejor
+            versión y sobre todo mejorar nuestra salud, asi que ya sabes, ¿A que
+            esperas?. <img src="/img/monitor.png" class="portada w-100" />
+          </div>
+        </div>
 
-			<div sec:authorize="hasRole('ROLE_ADMIN')" class="col-10 mt-5 mb-5">
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-10 mt-5 mb-5">
+          <div class="row col-12 mt-4 mb-4 mr-0 justify-content-center">
+            <h3>Bienvenido al hall de Administrador</h3>
 
-				<h3>Bienvenido al hall de Administrador</h3>
-				<div class="row col-12 mt-3 mb-5">
-					<img src="/img/admin.png" class="img-fluid">
-				</div>
-
-
-			</div>
-
-
-
-
-
-
-		</div>
-
-
-	</div>
-</body>
+            <img src="/img/admin.png" class="portada w-100" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

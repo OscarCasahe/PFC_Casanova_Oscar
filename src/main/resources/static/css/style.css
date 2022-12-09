@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
+
+* {
+  font-family: "Nanum Gothic", sans-serif;
+
+}
+
+.header > * {
+	background: rgb(119, 103, 2);
+	background: linear-gradient(
+	  90deg,
+	  rgba(119, 103, 2, 1) 0%,
+	  rgba(182, 155, 50, 1) 47%,
+	  rgba(119, 103, 2, 1) 100%
+	);
+  }
+

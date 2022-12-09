@@ -1,37 +1,100 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='List Reservas')">
-<meta charset="UTF-8">
-</head>
-<body>
-	<div class="container mt-5">
-		<div class="row mt-5 justify-content-center">
-			<header th:insert="fragments/parts::menu"></header>
-			<div class="col-10 mt-5 mb-5">
-			
-				
-			<h3 class="mb-4">Lista de Reservas:</h3>
-				<table sec:authorize="isAuthenticated()" class="table table-stripped table-hover">
-						<thead class="table-light">
-						<tr>
-							<th>Usuario</th>
-							<th>Clase </th>
-							<th>Fecha</th>
-							<th>Hora</th>
-						</tr>
-						</thead>					
-						<tbody>
-						 <tr th:each="r : ${reservas}">
-						 	<td th:text="${r.getUsuario().getNombre()}"></td>
-						 	<td th:text="${r.getClase().getNombre()}"></td>
-						 	<td th:text="${r.getFecha()}"></td>
-						 	<td th:text="${r.getHora()}"></td>
-						    
-						 </tr>					
-						</tbody>
-					</table>
-			</div>		
-		</div>
-	</div>
-</body>
-</html> 
+  <head th:replace="fragments/bootstrap::head(title='List Reservas')">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap"
+      rel="stylesheet"
+    />
+    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
+  </head>
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&display=swap");
+    * {
+      font-family: "Anek Gurmukhi", sans-serif;
+    }
+
+    .header {
+      padding: 0rem;
+    }
+
+    .header > * {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+    }
+
+    .header > div {
+      padding: 0rem;
+    }
+
+    .fondo {
+      background: rgb(245, 238, 182);
+      background: linear-gradient(
+        90deg,
+        rgba(245, 238, 182, 1) 0%,
+        rgba(249, 246, 226, 1) 47%,
+        rgba(245, 238, 182, 1) 100%
+      );
+    }
+
+    li {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    th {
+      background: rgb(77, 68, 5);
+      background: linear-gradient(
+        90deg,
+        rgba(77, 68, 5, 1) 0%,
+        rgba(120, 101, 27, 1) 47%,
+        rgba(77, 68, 5, 1) 100%
+      );
+      color: white !important;
+    }
+
+    td {
+      border: 0.05rem solid #c3b764 !important;
+      background-color: #fff0cf !important;
+    }
+  </style>
+  <body>
+    <div class="container-fluid col-12 ml-0 mr-0">
+      <div class="fondo row justify-content-center">
+        <header class="header" th:insert="fragments/parts::menu"></header>
+        <div class="col-10 mt-5 mb-5 vh-100">
+          <h3 class="mb-4">Lista de Reservas</h3>
+          <table
+            sec:authorize="isAuthenticated()"
+            class="table table-stripped table-hover"
+          >
+            <thead class="table-light">
+              <tr>
+                <th>Usuario</th>
+                <th>Clase</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="r : ${reservas}">
+                <td th:text="${r.getUsuario().getNombre()}"></td>
+                <td th:text="${r.getClase().getNombre()}"></td>
+                <td th:text="${r.getFecha()}"></td>
+                <td th:text="${r.getHora()}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

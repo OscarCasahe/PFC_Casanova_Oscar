@@ -81,6 +81,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		userBD.setEmail(usuario.getEmail());
 		userBD.setPassword(usuario.getPassword());
 		userBD.setCp(usuario.getCp());
+		userBD.setRole(usuario.getRole());
 		userBD.setPlan(plan);
 		
 		
