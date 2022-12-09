@@ -90,6 +90,7 @@ public class ClienteController {
 	@PostMapping("/admin/clientes/update")
 	public String editarClientePost( @ModelAttribute UsuarioDTO usuario, Model model){
 
+		usuario.setPlan(usuario.getPlan());
 		usuarioService.updateUsuario(usuario);
 
 		return "redirect:/admin/clientes/";

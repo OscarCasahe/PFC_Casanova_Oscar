@@ -102,15 +102,14 @@
 					<label for="cp" class="form-label mt-3">CP</label>
     				<input type="text" class="form-control" id="cp" name="cp" th:field="*{cp}" value="${usuario.getCp()}" required >
     				
-<!--     				<label th:if="${usuario.getPlan() != null}" for="plan" class="form-label mt-3">Plan</label> -->
+    				<label th:if="${usuario.getPlan() != null}" for="plan" class="form-label mt-3">Plan</label>
 					
- <!-- 					SI EL USUARIO TIENE UN PLAN PETA -->
-<!-- 					<select th:if="${usuario.getPlan() != null}" id="plan" name="plan" class="form-select form-select-lg mb-3"  th:field="*{plan}"> -->
+					<select th:if="${usuario.getPlan() != null}" id="plan" name="plan" class="form-select form-select-lg mb-3" >
 					
-<!--  						<option th:if="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" selected></option>  -->
-<!--  						<option th:unless="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" selected></option>  -->
+ 						<option th:if="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" selected></option> 
+ 						<option th:unless="${usuario.getPlan() == p.getId()}"  th:each="p : ${planes}" th:value="${p.getId()}" th:text="${p.getNombre()}" ></option> 
 					
-<!-- 					</select> -->
+					</select>
 
 
 
