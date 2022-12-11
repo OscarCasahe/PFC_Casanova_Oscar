@@ -28,9 +28,7 @@ public class MainController {
 		return "index";
 	}
 	
-	/*
-	 * MÉTODO GET PARA MANDAR UN USUARIO VACIO AL POST 
-	 */
+
 	
 	
 	@GetMapping("/register")
@@ -40,10 +38,6 @@ public class MainController {
 		model.addAttribute("usuario", userDTO);		
 		return "register";
 	}
-	
-	/*
-	 * METODO POST DONDE RELLENAR EL USUARIO DTO CON LOS DATOS REGIDOS DEL FORMULARIO
-	 */
 	
 	@PostMapping("/register")
 	public String registerPost(@ModelAttribute UsuarioDTO usuario) {
