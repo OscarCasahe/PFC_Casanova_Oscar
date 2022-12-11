@@ -54,6 +54,10 @@ public class ClienteController {
 	
 	//Clientes
 	
+	/*
+	 * METODO GET PARA OBTENER LOS USUARIOS REGISTRADOS EN LA BBDD
+	 */
+	
 	@GetMapping("/admin/clientes")
 	public String usuarios(Model model) {
 
@@ -63,6 +67,9 @@ public class ClienteController {
 		return "listaClientes";
 	}
 	
+	/*
+	 * METODO GET PARA RECOGER LOS DATOS DEL USUAURIO CLICADO EN LA PANTALLA ANTERIOR Y PASARLOS A LA VISTA
+	 */
 	
 	@GetMapping("/admin/clientes/update")
 	public String editarCliente(@RequestParam(required = false, name = "cliente") String user, Model model) {
@@ -85,7 +92,9 @@ public class ClienteController {
 		return "updateCliente";
 	}
 	
-	
+	/*
+	 * METODO POST DONDE ACTUALIZAR EL USUARIO ACCEDIENDO AL SERVICE
+	 */
 	
 	@PostMapping("/admin/clientes/update")
 	public String editarClientePost( @ModelAttribute UsuarioDTO usuario, Model model){
@@ -97,6 +106,9 @@ public class ClienteController {
 	}
 	
 	
+	/*
+	 * METODO PARA BORRAR EL USUARIO SELECCIONADO BUSCANDO EL USUARIO SELECCIONADO CON EL ID RECOGIDO
+	 */
 	
 	@RequestMapping("/admin/clientes/delete")
 	public String clientesDelete(@RequestParam(required = false, name = "cliente") String cliente, Model model) {
@@ -107,11 +119,12 @@ public class ClienteController {
 	}
 	
 	
-	
-	
-	
+
 	//Clases
 	
+	/*
+	 * METODO PARA PASARLE A LA VISTA LAS CLASES REGISTRADAS EN LA BBDD 
+	 */
 	
 	@GetMapping("/admin/clases")
 	public String clases(Model model) {
@@ -123,17 +136,10 @@ public class ClienteController {
 		
 	}
 	
-	
-	
-	@RequestMapping("/admin/clases/delete")
-	public String clasesDelete(@RequestParam(required = false, name = "clase") String clase, Model model) {
 
-		claseService.deleteClaseById(Long.parseLong(clase));
-
-		return "redirect:/admin/clases/	";
-	}
-	
-	
+	/*
+	 * METODO GET PARA RECOGER LOS DATOS DE LA CLASE CLICADA EN LA PANTALLA ANTERIOR Y PASARLOS A LA VISTA
+	 */
 	
 	@GetMapping("/admin/clases/update")
 	public String editarClase(@RequestParam(required = false, name = "clas") String clas, Model model) {
@@ -155,7 +161,11 @@ public class ClienteController {
 		return "updateClase";
 	}
 	
+
 	
+	/*
+	 * METODO POST DONDE ACTUALIZAR EL USUARIO ACCEDIENDO AL SERVICE
+	 */
 	
 	@PostMapping("/admin/clases/update")
 	public String editarClasePost( @ModelAttribute ClaseDTO clase, Model model){
@@ -164,6 +174,24 @@ public class ClienteController {
 
 		return "redirect:/admin/clases/";
 	}
+	
+	
+	/*
+	 * METODO PARA BORRAR LA CLASE SELECCIONADA EN LA VISTA ANTERIOR
+	 */
+	
+	@RequestMapping("/admin/clases/delete")
+	public String clasesDelete(@RequestParam(required = false, name = "clase") String clase, Model model) {
+
+		claseService.deleteClaseById(Long.parseLong(clase));
+
+		return "redirect:/admin/clases/	";
+	}
+	
+	/*
+	 * METODO PARA PASARLE LAS RESERVAS EXISTENTES EN LA BBDD A LA VISTA
+	 */
+	
 
 	//RESERVAS
 	@GetMapping("/admin/reservas")
@@ -178,7 +206,7 @@ public class ClienteController {
 	
 	
 	//ZONA USUARIO
-	
+
 	
 	
 	@GetMapping("/contrataPlan")
@@ -188,6 +216,9 @@ public class ClienteController {
 		return "contrataPlan";
 	}
 
+	/*
+	 * METODO POST PARA RECOGER LOS DATOS DEL USUARIO LOGEADO Y CAMBIAR SU PLAN POR EL SELECCIONADO
+	 */
 	
 	@PostMapping("/contrataPlan")
 	public String contrataPlanPost( @ModelAttribute UsuarioDTO user, Model model){
@@ -215,6 +246,9 @@ public class ClienteController {
 		return "redirect:/";
 	} 
 
+	/*
+	 * METODO PARA OBTENER LAS RESERVAS Y LOS DATOS DEL USUARIO
+	 */
 	
 	@GetMapping("/vistaPerfil")
 	public String vistaPerfil(Model model) {
@@ -242,6 +276,9 @@ public class ClienteController {
 	}
 	
 	
+	/*
+	 * METODO PARA PASARLE A LA VISTA LAS CLASES EXISTENTES EN LA BBDD Y UN OBJETO RESERVA PARA GUARDAR LOS DATOS
+	 */ 
 	
 	@GetMapping("/reservarClase")
 	public String reserva(Model model) {
@@ -254,6 +291,10 @@ public class ClienteController {
 		
 		return "reservarClase";
 	}
+	
+	/*
+	 * METODO PARA GUARDAR LOS DATOS RECOGIDOS EN LA RESERVA Y CREAR UNA NUEVA INSTANCIA
+	 */
 	
 	@PostMapping("/reservarClase")
 	public String reservaPost(@ModelAttribute ReservaDTO reserva) {
